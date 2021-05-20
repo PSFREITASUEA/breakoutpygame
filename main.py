@@ -27,5 +27,15 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if event.type == QUIT:
                 running = False
+            elif event.type == KEYDOWN:
+                if event.key == K_a:
+                    print("Foi para a esquerda")
+                elif event.key == K_d:
+                    print("Foi para a direita")
+            elif event.type == KEYUP:
+                if event.key == K_a:
+                    print("Parou de ir para esquerda")
+                elif event.key == K_d:
+                    print("Parou de ir para direita")
 
         pygame.display.flip()
