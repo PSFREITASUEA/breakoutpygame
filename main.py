@@ -3,6 +3,7 @@ from pygame.locals import *
 from pygame.surface import Surface
 
 import colors
+from Player import Player
 
 WINDOW_WIDTH = 720
 WINDOW_HEIGHT = 1000
@@ -13,6 +14,9 @@ if __name__ == '__main__':
     pygame.display.set_caption("BREAKOUT")
 
     running = True
+
+    player_1 = Player(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100)
+    player_1.render_on_initial_position(window_surface)
 
     while running:
         # RECT(x,y,width,height)
