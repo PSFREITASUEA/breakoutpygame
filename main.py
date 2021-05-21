@@ -16,26 +16,28 @@ if __name__ == '__main__':
     running = True
 
     player_1 = Player(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100)
-    player_1.render_on_initial_position(window_surface)
 
     while running:
-        # RECT(x,y,width,height)
-        pygame.draw.rect(window_surface, colors.WHITE, (20, 20, 680, 30))
-        pygame.draw.rect(window_surface, colors.WHITE, (20, 20, 10, 960))
-        pygame.draw.rect(window_surface, colors.WHITE, (700, 20, 10, 970))
-
         for event in pygame.event.get():
             if event.type == QUIT:
                 running = False
             elif event.type == KEYDOWN:
                 if event.key == K_a:
-                    print("Foi para a esquerda")
+                    player_1.is_going_left = True
                 elif event.key == K_d:
-                    print("Foi para a direita")
+                    player_1.is_going_right = True
             elif event.type == KEYUP:
                 if event.key == K_a:
-                    print("Parou de ir para esquerda")
+                    player_1.is_going_left = False
                 elif event.key == K_d:
-                    print("Parou de ir para direita")
+                    player_1.is_going_right = False
 
-        pygame.display.flip()
+        window_surface.fill(colors.BLACK)
+        pygame.draw.rect(window_surface, colors.WHITE, (20, 20, 680, 30))
+        pygame.draw.rect(window_surface, colors.WHITE, (20, 20, 10, 960))
+        pygame.draw.rect(window_surface, colors.WHITE, (700, 20, 10, 970))
+
+        player_1.move()
+        player_1.render(window_surface)
+
+        pygame.display.update()
