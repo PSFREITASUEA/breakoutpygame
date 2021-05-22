@@ -31,15 +31,17 @@ if __name__ == '__main__':
     brick_list = []
     number_of_lines = 8
     brick_y_position = top_limit_rect.bottom + 40
-
+    line_value = 1000
     for i in range(number_of_lines):
         has_space = True
         margin_between_bricks = 8
         brick_x_position = left_limit_rect.right + margin_between_bricks / 2
         brick_y_position += 10
         brick_quantity = 0
+        if i % 2 == 0 and i != 0:
+            line_value -= 200
         while has_space:
-            brick = Brick(brick_x_position, brick_y_position, "blue")
+            brick = Brick(brick_x_position, brick_y_position, line_value)
             brick_list.append(brick)
             brick_x_position += brick.rect.width
             brick_quantity += 1
