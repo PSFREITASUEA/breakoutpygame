@@ -12,9 +12,9 @@ if __name__ == '__main__':
     window_surface: Surface = pygame.display.set_mode(SCREEN_DIMENSION)
     pygame.display.set_caption(WINDOW_CAPTION)
 
-    # pygame.mixer.init()
-    # pygame.mixer.music.load(BGM_PATH)
-    # pygame.mixer.music.play(loops=-1)
+    pygame.mixer.init()
+    pygame.mixer.music.load(BGM_PATH)
+    pygame.mixer.music.play(loops=-1)
 
     running = True
 
