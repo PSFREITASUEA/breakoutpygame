@@ -12,8 +12,11 @@ class Player:
     def render(self, screen: pygame.surface):
         screen.blit(self.image, (self.rect.x - self.rect.width / 2, self.rect.y))
 
-    def move(self):
+    def move(self, left_limit, right_limit):
         if self.is_going_left:
             self.rect.centerx -= 1
         elif self.is_going_right:
             self.rect.centerx += 1
+
+        if self.rect.x <= left_limit:
+            self.rect.x = left_limit
