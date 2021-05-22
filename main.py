@@ -77,5 +77,6 @@ if __name__ == '__main__':
         ball_1.render(window_surface)
         ball_1.update()
         ball_1.is_colliding_with_limits(right_limit_rect, left_limit_rect, top_limit_rect)
+        ball_1.is_colliding_with_player(player_1)
 
         pygame.display.update()
