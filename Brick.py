@@ -21,7 +21,7 @@ def define_color(value):
 class Brick:
     def __init__(self, x, y, value):
         # x and y represents the coordinate where the brick will be placed
-        self.rect = pygame.Rect(x, y, 20, 5)
+        self.rect = pygame.Rect(x, y, 30, 10)
         self.x = x
         self.y = y
         self.value = value

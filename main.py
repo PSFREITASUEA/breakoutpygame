@@ -36,7 +36,7 @@ if __name__ == '__main__':
         has_space = True
         margin_between_bricks = 8
         brick_x_position = left_limit_rect.right + margin_between_bricks / 2
-        brick_y_position += 10
+        brick_y_position += 20
         brick_quantity = 0
         if i % 2 == 0 and i != 0:
             line_value -= 200
