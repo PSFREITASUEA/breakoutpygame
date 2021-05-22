@@ -42,8 +42,11 @@ class Ball:
     def is_colliding_with_player(self, player):
         if self.rect.colliderect(player.rect):
             self.dy *= -1
-            pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
+            # if the ball hits the side of the player the ball is repositioned
+            if player.rect.y - PLAYER_HEIGHT <= self.rect.y <= player.rect.y + PLAYER_HEIGHT:
+                self.rect.y = player.rect.y - PLAYER_HEIGHT
+            pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
     def update(self):
         self.rect.y += self.dy * self.speed / 2
