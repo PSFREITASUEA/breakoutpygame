@@ -1,4 +1,5 @@
 import pygame
+player_score = 0
 
 
 class Brick:
@@ -11,18 +12,18 @@ class Brick:
         self.color = color
 
     def increment_score(self):
-        global PLAYER_SCORE
+        global player_score
         # points added depends on the brick color
         if self.color == "blue":
-            PLAYER_SCORE += 100
+            player_score += 100
         elif self.color == "green":
-            PLAYER_SCORE += 200
+            player_score += 200
         elif self.color == "yellow":
-            PLAYER_SCORE += 400
+            player_score += 400
         elif self.color == "orange":
-            PLAYER_SCORE += 800
+            player_score += 800
         elif self.color == "red":
-            PLAYER_SCORE += 1000
+            player_score += 1000
 
     def hide_brick(self):
         self.is_hidden = True

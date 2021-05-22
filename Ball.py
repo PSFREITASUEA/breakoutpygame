@@ -1,4 +1,5 @@
 import pygame
+from Constants import *
 
 
 class Ball:
@@ -9,6 +10,7 @@ class Ball:
         self.speed = 5
 
     def is_colliding_with_brick(self):
+        # runs a check on every brick position
         brick_list = []
         for brick in brick_list:
             if self.rect.colliderect(brick.rect) and self.dy < 0:
@@ -19,7 +21,7 @@ class Ball:
                 self.dy *= -1
                 self.speed += 5
 
-                pygame.mixer.Sound('assets/bounce.wav').play()
+                pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
     def is_colliding_with_wall(self):
         pass
