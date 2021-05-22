@@ -5,8 +5,8 @@ from pygame.surface import Surface
 import colors
 from Player import Player
 
-WINDOW_WIDTH = 720
-WINDOW_HEIGHT = 1000
+WINDOW_WIDTH = 460
+WINDOW_HEIGHT = 720
 SCREEN_DIMENSION = (WINDOW_WIDTH, WINDOW_HEIGHT)
 
 if __name__ == '__main__':
@@ -15,11 +15,11 @@ if __name__ == '__main__':
 
     running = True
 
-    player_1 = Player(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 100)
+    player_1 = Player(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 60)
     # rect(x,y, width, height)
-    left_limit_rect = Rect(10, 20, 10, 960)
-    right_limit_rect = Rect(690, 20, 10, 960)
-    top_limit_rect = Rect(20, 20, 680, 40)
+    left_limit_rect = Rect(10, 10, 10, 700)
+    right_limit_rect = Rect(440, 10, 10, 700)
+    top_limit_rect = Rect(20, 10, 420, 20)
 
     while running:
         for event in pygame.event.get():
