@@ -12,9 +12,9 @@ if __name__ == '__main__':
     window_surface: Surface = pygame.display.set_mode(SCREEN_DIMENSION)
     pygame.display.set_caption(WINDOW_CAPTION)
 
-    pygame.mixer.init()
-    pygame.mixer.music.load(BGM_PATH)
-    pygame.mixer.music.play(loops=-1)
+    # pygame.mixer.init()
+    # pygame.mixer.music.load(BGM_PATH)
+    # pygame.mixer.music.play(loops=-1)
 
     running = True
 
@@ -28,25 +28,28 @@ if __name__ == '__main__':
 
     clock = pygame.time.Clock()
 
-    has_space = True
     brick_list = []
-    margin_between_bricks = 8
-    brick_x_position = left_limit_rect.right + margin_between_bricks / 2
+    number_of_lines = 8
     brick_y_position = top_limit_rect.bottom + 40
-    brick_quantity = 0
 
-    while has_space:
-        brick = Brick(brick_x_position, brick_y_position, "blue")
-        brick_list.append(brick)
-        brick_x_position += brick.rect.width
-        brick_quantity += 1
+    for i in range(number_of_lines):
+        has_space = True
+        margin_between_bricks = 8
+        brick_x_position = left_limit_rect.right + margin_between_bricks / 2
+        brick_y_position += 10
+        brick_quantity = 0
+        while has_space:
+            brick = Brick(brick_x_position, brick_y_position, "blue")
+            brick_list.append(brick)
+            brick_x_position += brick.rect.width
+            brick_quantity += 1
 
-        if brick_x_position >= right_limit_rect.left:
-            has_space = False
-        elif brick_x_position + margin_between_bricks >= right_limit_rect.left:
-            has_space = False
-        else:
-            brick_x_position += margin_between_bricks
+            if brick_x_position >= right_limit_rect.left:
+                has_space = False
+            elif brick_x_position + margin_between_bricks >= right_limit_rect.left:
+                has_space = False
+            else:
+                brick_x_position += margin_between_bricks
 
     while running:
         clock.tick(60)
