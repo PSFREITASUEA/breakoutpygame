@@ -4,7 +4,7 @@ from Constants import *
 
 class Ball:
     def __init__(self, x, y):
-        self.rect = pygame.Rect(x, y, 20, 20)
+        self.rect = pygame.Rect(x, y, 10, 10)
         self.dx = 1
         self.dy = 1
         self.speed = 4
@@ -20,29 +20,24 @@ class Ball:
                 self.dy *= -1
                 self.speed += 1
 
-                pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
     def is_colliding_with_limits(self, right_limit_rect, left_limit_rect, top_limit_rect):
         if self.rect.right >= right_limit_rect.left or \
                 self.rect.left <= left_limit_rect.right:
             self.dx *= -1
-            pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
         elif self.rect.top <= top_limit_rect.bottom:
             self.dy *= -1
-            pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
         elif self.rect.bottom >= WINDOW_HEIGHT:
             self.rect.x = WINDOW_WIDTH / 2
             self.rect.y = WINDOW_HEIGHT / 2
             self.dy = -1
             # todo change sound to something different
-            pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
     def is_colliding_with_player(self, player):
-        if self.rect.colliderect(player.rect):
+        if self.rect.colliderect(player.rect) and self.dy > 0:
             self.dy *= -1
-            pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
 
     def update(self):
