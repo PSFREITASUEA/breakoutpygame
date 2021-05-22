@@ -1,5 +1,7 @@
 import pygame
 
+import colors
+
 
 class Brick:
     def __init__(self, x, y, color):
@@ -26,3 +28,6 @@ class Brick:
 
     def hide_brick(self):
         self.is_hidden = True
+
+    def render(self, screen: pygame.surface):
+        pygame.draw.rect(screen, colors.WHITE, self.rect)
