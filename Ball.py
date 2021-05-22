@@ -1,5 +1,5 @@
 import pygame
-
+import Constants
 
 class Ball:
     def __init__(self, x, y):
@@ -21,18 +21,22 @@ class Ball:
 
                 pygame.mixer.Sound('assets/bounce.wav').play()
 
-    def is_colliding_with_wall(self):
-        pass
+    def is_colliding_with_limits(self, right_limit_rect, left_limit_rect, top_limit_rect):
+        if self.rect.right >= right_limit_rect.left or \
+                self.rect.left <= left_limit_rect.right:
+            self.dx *= -1
+
+        elif self.rect.top <= top_limit_rect.bottom:
+            self.dy *= -1
+
+        elif self.rect.bottom >= Constants.WINDOW_HEIGHT:
+            self.rect.x = Constants.WINDOW_WIDTH / 2
+            self.rect.y = Constants.WINDOW_HEIGHT / 2
+            self.dy = -1
 
     def update(self):
         self.rect.y += self.dy * self.speed
         self.rect.x += self.dx * self.speed
-        self.is_colliding_with_brick()
-        self.is_colliding_with_wall()
-
-    def restart_position(self):
-        # restart ball position after it hits the bottom
-        pass
 
     def render(self, screen: pygame.surface):
         pygame.draw.ellipse(screen, (255, 255, 255), self.rect)

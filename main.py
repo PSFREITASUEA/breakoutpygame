@@ -3,30 +3,30 @@ from pygame.locals import *
 from pygame.surface import Surface
 
 import colors
+from Ball import Ball
 from Brick import Brick
+from Constants import *
 from Player import Player
-
-WINDOW_WIDTH = 460
-WINDOW_HEIGHT = 720
-SCREEN_DIMENSION = (WINDOW_WIDTH, WINDOW_HEIGHT)
-
-PLAYER_SCORE = 0
 
 if __name__ == '__main__':
     window_surface: Surface = pygame.display.set_mode(SCREEN_DIMENSION)
-    pygame.display.set_caption("BREAKOUT")
+    pygame.display.set_caption(WINDOW_CAPTION)
 
-    # pygame.mixer.init()
-    # pygame.mixer.music.load("assets/cheetahmen.wav")
-    # pygame.mixer.music.play(loops=-1)
+    pygame.mixer.init()
+    pygame.mixer.music.load(BGM_PATH)
+    pygame.mixer.music.play(loops=-1)
 
     running = True
 
+    ball_1 = Ball(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2)
     player_1 = Player(WINDOW_WIDTH / 2, WINDOW_HEIGHT - 60)
 
+    # drawing screen borders
     left_limit_rect = Rect(10, 10, 10, 700)
     right_limit_rect = Rect(440, 10, 10, 700)
     top_limit_rect = Rect(20, 10, 420, 20)
+
+    clock = pygame.time.Clock()
 
     has_space = True
     brick_list = []
@@ -49,6 +49,7 @@ if __name__ == '__main__':
             brick_x_position += margin_between_bricks
 
     while running:
+        clock.tick(60)
         for event in pygame.event.get():
             if event.type == QUIT:
                 running = False
@@ -67,11 +68,14 @@ if __name__ == '__main__':
         pygame.draw.rect(window_surface, colors.WHITE, left_limit_rect)
         pygame.draw.rect(window_surface, colors.WHITE, right_limit_rect)
         pygame.draw.rect(window_surface, colors.WHITE, top_limit_rect)
-
         player_1.move(left_limit_rect.right, right_limit_rect.left)
         player_1.render(window_surface)
 
         for brick in brick_list:
             brick.render(window_surface)
+
+        ball_1.render(window_surface)
+        ball_1.update()
+        ball_1.is_colliding_with_limits(right_limit_rect, left_limit_rect, top_limit_rect)
 
         pygame.display.update()

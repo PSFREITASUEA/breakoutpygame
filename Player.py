@@ -1,9 +1,9 @@
 import pygame.image
-
+from Constants import *
 
 class Player:
     def __init__(self, x, y):
-        self.image = pygame.image.load("assets/white_player.png")
+        self.image = pygame.image.load(PLAYER_PADDLE_IMG_PATH)
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(x, y)
         self.is_going_left = False
