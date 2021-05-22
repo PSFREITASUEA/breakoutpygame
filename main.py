@@ -37,7 +37,7 @@ if __name__ == '__main__':
         pygame.draw.rect(window_surface, colors.WHITE, (20, 20, 10, 960))
         pygame.draw.rect(window_surface, colors.WHITE, (700, 20, 10, 970))
 
-        player_1.move(30, 690)
+        player_1.move(30, 700)
         player_1.render(window_surface)
 
         pygame.display.update()

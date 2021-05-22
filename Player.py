@@ -20,3 +20,5 @@ class Player:
 
         if self.rect.x <= left_limit:
             self.rect.x = left_limit
+        elif self.rect.right >= right_limit:
+            self.rect.right = right_limit
