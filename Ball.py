@@ -36,7 +36,7 @@ class Ball:
             self.rect.x = WINDOW_WIDTH / 2
             self.rect.y = WINDOW_HEIGHT / 2
             self.dy = -1
-            # todo change sound to something different
+            # todo change death sound to something different
             pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
     def is_colliding_with_player(self, player):

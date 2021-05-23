@@ -1,8 +1,5 @@
 import pygame
-
 import colors
-
-player_score = 0
 
 
 def define_color(value):
@@ -35,6 +32,17 @@ class Brick:
 
     def hide_brick(self):
         self.is_hidden = True
+        del self.rect
 
     def render(self, screen: pygame.surface):
         pygame.draw.rect(screen, self.color, self.rect)
+
+    @staticmethod
+    def is_colliding_with_ball(ball, brick_list):
+        for brick in brick_list:
+            if brick.rect.colliderect(ball.rect) and not brick.is_hidden:
+                print(brick.rect)
+                Brick.player_score += brick.value
+                print(f"Points: {Brick.player_score}")
+                ball.dy *= -1
+                ball.speed += 1

@@ -32,6 +32,8 @@ if __name__ == '__main__':
     number_of_lines = 8
     brick_y_position = top_limit_rect.bottom + 40
     line_value = 1000
+
+    Brick.player_score = 0
     for i in range(number_of_lines):
         has_space = True
         margin_between_bricks = 8
@@ -83,5 +85,6 @@ if __name__ == '__main__':
         ball_1.update()
         ball_1.is_colliding_with_limits(right_limit_rect, left_limit_rect, top_limit_rect)
         ball_1.is_colliding_with_player(player_1)
+        Brick.is_colliding_with_ball(ball_1, brick_list)
 
         pygame.display.update()
