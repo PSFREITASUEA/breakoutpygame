@@ -12,7 +12,7 @@ class Ball:
     def is_colliding_with_brick(self):
         brick_list = []
         for brick in brick_list:
-            if self.rect.colliderect(brick.rect) and self.dy < 0:
+            if self.rect.colliderect(brick.rect):
                 # makes the brick invisible after a collision
                 brick.hide_brick()
                 brick.increment_score()
@@ -23,8 +23,13 @@ class Ball:
                 pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
     def is_colliding_with_limits(self, right_limit_rect, left_limit_rect, top_limit_rect):
-        if self.rect.right >= right_limit_rect.left or \
-                self.rect.left <= left_limit_rect.right:
+        if self.rect.colliderect(right_limit_rect) or self.rect.x > right_limit_rect.x:
+            self.rect.x = right_limit_rect.x - 20
+            self.dx *= -1
+            pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
+
+        elif self.rect.colliderect(left_limit_rect) or self.rect.x > right_limit_rect.x:
+            self.rect.x = left_limit_rect.x + 10
             self.dx *= -1
             pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
