@@ -8,7 +8,18 @@ from Brick import Brick
 from Constants import *
 from Player import Player
 
+
+def text_creator(text_value, x, y, font_size):
+    font = pygame.font.Font('assets/PressStart2P.ttf', font_size)
+    text = font.render(text_value, True, (255, 255, 255))
+    text_rect = text.get_rect()
+    text_rect.center = (x, y)
+    window_surface.blit(text, text_rect)
+    return text_rect
+
+
 if __name__ == '__main__':
+    pygame.init()
     window_surface: Surface = pygame.display.set_mode(SCREEN_DIMENSION)
     pygame.display.set_caption(WINDOW_CAPTION)
 
@@ -32,11 +43,12 @@ if __name__ == '__main__':
     number_of_lines = 8
     brick_y_position = top_limit_rect.bottom + 40
     line_value = 1000
+
     for i in range(number_of_lines):
         has_space = True
         margin_between_bricks = 8
         brick_x_position = left_limit_rect.right + margin_between_bricks / 2
-        brick_y_position += 10
+        brick_y_position += 20
         brick_quantity = 0
         if i % 2 == 0 and i != 0:
             line_value -= 200
@@ -83,5 +95,7 @@ if __name__ == '__main__':
         ball_1.update()
         ball_1.is_colliding_with_limits(right_limit_rect, left_limit_rect, top_limit_rect)
         ball_1.is_colliding_with_player(player_1)
-
+        Brick.is_colliding_with_ball(ball_1, brick_list)
+        text_creator(f"SCORE: {Brick.player_score}", 180, 60, 24)
+        
         pygame.display.update()
