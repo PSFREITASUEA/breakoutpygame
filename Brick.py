@@ -1,4 +1,5 @@
 import pygame
+
 import colors
 
 
@@ -45,6 +46,7 @@ class Brick:
                 Brick.player_score += brick.value
                 ball.dy *= -1
                 ball.speed += 0.5
+                brick_list.remove(brick)
 
                 print(f"Collision: {brick.rect}")
                 print(f"Points: {Brick.player_score}")
