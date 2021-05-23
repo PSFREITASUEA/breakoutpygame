@@ -33,7 +33,6 @@ if __name__ == '__main__':
     brick_y_position = top_limit_rect.bottom + 40
     line_value = 1000
 
-    Brick.player_score = 0
     for i in range(number_of_lines):
         has_space = True
         margin_between_bricks = 8
