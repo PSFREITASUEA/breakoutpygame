@@ -97,5 +97,5 @@ if __name__ == '__main__':
         ball_1.is_colliding_with_player(player_1)
         Brick.is_colliding_with_ball(ball_1, brick_list)
         text_creator(f"SCORE: {Brick.player_score}", 180, 60, 24)
-        
+
         pygame.display.update()
