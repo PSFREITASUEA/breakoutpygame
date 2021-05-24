@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
 from pygame.surface import Surface
-from time import sleep
 
 import colors
 from Ball import Ball
@@ -99,9 +98,8 @@ if __name__ == '__main__':
             ball_1.is_colliding_with_player(player_1)
             Brick.is_colliding_with_ball(ball_1, brick_list)
             text_creator(f"SCORE:{Brick.player_score}", 130, 60, 15)
-            text_creator(f"LIFES:{Player.life}", 320, 60, 15)
-        
-        
+            text_creator(f"LIVES:{Player.life}", 320, 60, 15)
+
         elif Player.life == 0 or len(brick_list) == 0:   
             window_surface.fill((0, 0, 0))
            
@@ -117,7 +115,5 @@ if __name__ == '__main__':
             
             if TIME_TO_CLOSE <= 0:
                 running = False
-                
 
         pygame.display.flip()
-

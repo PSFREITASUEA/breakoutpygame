@@ -3,16 +3,17 @@ from Constants import *
 
 
 class Player:
+    life = 3
+
     def __init__(self, x, y):
         self.image = pygame.image.load(PLAYER_PADDLE_IMG_PATH)
         self.rect = self.image.get_rect()
         self.rect = self.rect.move(x - PLAYER_WIDTH/2, y)
         self.is_going_left = False
         self.is_going_right = False
-        Player.life = 3
+
     def render(self, screen: pygame.surface):
         screen.blit(self.image, (self.rect.x, self.rect.y))
-
 
     def move(self, left_limit, right_limit):
         if self.is_going_left:
