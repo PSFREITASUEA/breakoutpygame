@@ -25,16 +25,11 @@ class Brick:
         self.x = x
         self.y = y
         self.value = value
-        self.is_hidden = False
         self.color = define_color(self.value)
 
     def increment_score(self):
         # points added depends on the brick color
         Brick.player_score += self.value
-
-    def hide_brick(self):
-        self.is_hidden = True
-        del self.rect
 
     def render(self, screen: pygame.surface):
         pygame.draw.rect(screen, self.color, self.rect)
@@ -42,7 +37,7 @@ class Brick:
     @staticmethod
     def is_colliding_with_ball(ball, brick_list):
         for brick in brick_list:
-            if brick.rect.colliderect(ball.rect) and not brick.is_hidden:
+            if brick.rect.colliderect(ball.rect):
                 Brick.player_score += brick.value
                 ball.dy *= -1
                 brick_list.remove(brick)
@@ -50,5 +45,5 @@ class Brick:
                     ball.speed += 0.5
 
                 print(f"Collision: {brick.rect}")
-                print(f"Points: {Brick.player_score}")
                 print(f"Ball speed: {ball.speed}")
+                print("---------------------")

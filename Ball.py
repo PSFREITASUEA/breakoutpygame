@@ -8,8 +8,13 @@ class Ball:
         self.dx = 1
         self.dy = 1
         self.speed = 4
+
         # setting a max speed for ball speed increament
         self.max_speed = 10
+
+        # setting a max speed for ball speed increment
+        self.max_speed = 20
+
 
     def is_colliding_with_brick(self):
         brick_list = []
@@ -23,8 +28,8 @@ class Ball:
                 self.dy *= -1
                 self.speed += 1
 
-
     def is_colliding_with_limits(self, right_limit_rect, left_limit_rect, top_limit_rect, Player):
+
         if self.rect.colliderect(right_limit_rect) or self.rect.x > right_limit_rect.x:
             self.rect.x = right_limit_rect.x - 20
             self.dx *= -1
@@ -34,7 +39,7 @@ class Ball:
             self.rect.x = left_limit_rect.x + 10
             self.dx *= -1
 
-        elif self.rect.top <= top_limit_rect.bottom:
+        elif self.rect.top <= top_limit_rect.bottom and self.dy < 0:
             self.dy *= -1
 
         elif self.rect.bottom >= WINDOW_HEIGHT:
@@ -44,7 +49,6 @@ class Ball:
 
             # todo change death sound to something different
             pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
-
 
     def is_colliding_with_player(self, player):
         if self.rect.colliderect(player.rect) and self.dy > 0:

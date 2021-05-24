@@ -82,8 +82,7 @@ if __name__ == '__main__':
                 elif event.key == K_d:
                     player_1.is_going_right = False
 
-     
-        if Player.life > 0:
+        if Player.life > 0 or len(brick_list) > 0:
             window_surface.fill(colors.BLACK)
             pygame.draw.rect(window_surface, colors.WHITE, left_limit_rect)
             pygame.draw.rect(window_surface, colors.WHITE, right_limit_rect)
@@ -103,7 +102,7 @@ if __name__ == '__main__':
             text_creator(f"LIFES:{Player.life}", 320, 60, 15)
         
         
-        else:   
+        elif Player.life == 0 or len(brick_list) == 0:   
             window_surface.fill((0, 0, 0))
            
             if len(brick_list) == 0:
@@ -121,3 +120,4 @@ if __name__ == '__main__':
                 
 
         pygame.display.flip()
+
