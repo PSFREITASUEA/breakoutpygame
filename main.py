@@ -82,7 +82,7 @@ if __name__ == '__main__':
                 elif event.key == K_d:
                     player_1.is_going_right = False
 
-        if Player.life > 0 or len(brick_list) > 0:
+        if Player.life > 0 and len(brick_list) > 0:
             window_surface.fill(colors.BLACK)
             pygame.draw.rect(window_surface, colors.WHITE, left_limit_rect)
             pygame.draw.rect(window_surface, colors.WHITE, right_limit_rect)

@@ -12,9 +12,6 @@ class Ball:
         # setting a max speed for ball speed increament
         self.max_speed = 10
 
-        # setting a max speed for ball speed increment
-        self.max_speed = 20
-
 
     def is_colliding_with_brick(self):
         brick_list = []
@@ -53,10 +50,9 @@ class Ball:
     def is_colliding_with_player(self, player):
         if self.rect.colliderect(player.rect) and self.dy > 0:
             self.dy *= -1
+            
+            
 
-            # if the ball hits the side of the player the ball is repositioned
-            if player.rect.y - PLAYER_HEIGHT <= self.rect.y <= player.rect.y + PLAYER_HEIGHT:
-                self.rect.y = player.rect.y - PLAYER_HEIGHT
             pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
     def update(self):
