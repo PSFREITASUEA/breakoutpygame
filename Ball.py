@@ -51,7 +51,17 @@ class Ball:
         if self.rect.colliderect(player.rect) and self.dy > 0:
             self.dy *= -1
             
-            
+            # reaction of the ball when it touches the right of the paddle
+            if player.rect.right >= self.rect.centerx > (player.rect.centerx + 10):
+                self.dx = 1
+
+            # reaction of the ball when it touches the left of the paddle
+            elif player.rect.left <= self.rect.centerx < (player.rect.centerx - 10):
+                self.dx = -1
+
+            # reaction of the ball when it touches the middle of the paddle
+            elif (player.rect.centerx + 10) >= self.rect.centerx > (player.rect.centerx - 10):
+                self.dx = 0
 
             pygame.mixer.Sound(BOUNCE_SFX_PATH).play()
 
