@@ -7,7 +7,9 @@ class Ball:
         self.rect = pygame.Rect(x, y, 10, 10)
         self.dx = 1
         self.dy = 1
-        self.speed = 4
+        self.SPEED = 4
+        # setting a max speed for ball speed increament
+        self.MAX_SPEED = 20
 
     def is_colliding_with_brick(self):
         brick_list = []
@@ -16,6 +18,7 @@ class Ball:
                 # makes the brick invisible after a collision
                 brick.hide_brick()
                 brick.increment_score()
+                brick.remove(brick)
                 # changes vertical direction and increases ball speed
                 self.dy *= -1
                 self.speed += 1

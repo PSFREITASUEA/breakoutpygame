@@ -45,8 +45,9 @@ class Brick:
             if brick.rect.colliderect(ball.rect) and not brick.is_hidden:
                 Brick.player_score += brick.value
                 ball.dy *= -1
-                ball.speed += 0.5
                 brick_list.remove(brick)
+                if ball.speed < ball.MAXS_PEED:
+                    ball.speed += 0.5
 
                 print(f"Collision: {brick.rect}")
                 print(f"Points: {Brick.player_score}")
