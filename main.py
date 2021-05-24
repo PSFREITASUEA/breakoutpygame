@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from pygame.surface import Surface
+from time import sleep
 
 import colors
 from Ball import Ball
@@ -81,21 +82,42 @@ if __name__ == '__main__':
                 elif event.key == K_d:
                     player_1.is_going_right = False
 
-        window_surface.fill(colors.BLACK)
-        pygame.draw.rect(window_surface, colors.WHITE, left_limit_rect)
-        pygame.draw.rect(window_surface, colors.WHITE, right_limit_rect)
-        pygame.draw.rect(window_surface, colors.WHITE, top_limit_rect)
-        player_1.move(left_limit_rect.right, right_limit_rect.left)
-        player_1.render(window_surface)
+     
+        if Player.life > 0:
+            window_surface.fill(colors.BLACK)
+            pygame.draw.rect(window_surface, colors.WHITE, left_limit_rect)
+            pygame.draw.rect(window_surface, colors.WHITE, right_limit_rect)
+            pygame.draw.rect(window_surface, colors.WHITE, top_limit_rect)
+            player_1.move(left_limit_rect.right, right_limit_rect.left)
+            player_1.render(window_surface)
 
-        for brick in brick_list:
-            brick.render(window_surface)
+            for brick in brick_list:
+                brick.render(window_surface)
 
-        ball_1.render(window_surface)
-        ball_1.update()
-        ball_1.is_colliding_with_limits(right_limit_rect, left_limit_rect, top_limit_rect)
-        ball_1.is_colliding_with_player(player_1)
-        Brick.is_colliding_with_ball(ball_1, brick_list)
-        text_creator(f"SCORE: {Brick.player_score}", 180, 60, 24)
+            ball_1.render(window_surface)
+            ball_1.update()
+            ball_1.is_colliding_with_limits(right_limit_rect, left_limit_rect, top_limit_rect, Player)
+            ball_1.is_colliding_with_player(player_1)
+            Brick.is_colliding_with_ball(ball_1, brick_list)
+            text_creator(f"SCORE:{Brick.player_score}", 130, 60, 15)
+            text_creator(f"LIFES:{Player.life}", 320, 60, 15)
         
-        pygame.display.update()
+        
+        else:   
+            window_surface.fill((0, 0, 0))
+           
+            if len(brick_list) == 0:
+                # drawing the victory text
+                text_creator('YOU WIN!!!', WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 25)
+                TIME_TO_CLOSE -= 1
+
+            elif Player.life == 0:
+                # drawing the lose text
+                text_creator('YOU LOSE.', WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 25)
+                TIME_TO_CLOSE -= 1
+            
+            if TIME_TO_CLOSE <= 0:
+                running = False
+                
+
+        pygame.display.flip()

@@ -9,9 +9,10 @@ class Player:
         self.rect = self.rect.move(x - PLAYER_WIDTH/2, y)
         self.is_going_left = False
         self.is_going_right = False
-
+        Player.life = 3
     def render(self, screen: pygame.surface):
         screen.blit(self.image, (self.rect.x, self.rect.y))
+
 
     def move(self, left_limit, right_limit):
         if self.is_going_left:
