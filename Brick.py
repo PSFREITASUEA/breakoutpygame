@@ -46,7 +46,7 @@ class Brick:
                 Brick.player_score += brick.value
                 ball.dy *= -1
                 brick_list.remove(brick)
-                if ball.speed < ball.MAXS_PEED:
+                if ball.speed < ball.max_speed:
                     ball.speed += 0.5
 
                 print(f"Collision: {brick.rect}")

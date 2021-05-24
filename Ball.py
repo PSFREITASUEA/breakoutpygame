@@ -7,9 +7,9 @@ class Ball:
         self.rect = pygame.Rect(x, y, 10, 10)
         self.dx = 1
         self.dy = 1
-        self.SPEED = 4
+        self.speed = 4
         # setting a max speed for ball speed increament
-        self.MAX_SPEED = 20
+        self.max_speed = 20
 
     def is_colliding_with_brick(self):
         brick_list = []
